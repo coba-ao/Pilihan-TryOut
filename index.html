@@ -4,89 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pilih Paket TryOut - BrainUp.Id</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   :root{
-    --core:#0b3c2a; 
-    --core-dark:#072a1d; 
-    --accent:#F4A259; 
-    --accent-dark:#D68A3C;
-    --bg-main:#F8FAF9;
-    --text-primary:#1C2B2B; 
-    --text-secondary:#5A6B6B; 
-    --border:#E6EFEA;
+    --core:#0b3c2a; --core-dark:#072a1d; --accent:#F4A259; --bg-main:#F5F9F7;
+    --text-primary:#1C2B2B; --text-secondary:#5A6B6B; --border:#D6E4DD;
   }
+  body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-primary); line-height: 1.6; padding-bottom: 50px; }
   
-  body { font-family: 'Outfit', sans-serif; background: var(--bg-main); color: var(--text-primary); line-height: 1.6; padding-bottom: 50px; }
-  
-  /* HEADER */
-  .header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,.03); position: sticky; top: 0; z-index: 100; }
-  .brand { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; color: var(--core); display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .brand img { height: 40px; border-radius: 8px; }
-  .btn-back { color: var(--text-secondary); font-weight: 600; text-decoration: none; font-size: 15px; transition: 0.3s; display: flex; align-items: center; gap: 6px; }
-  .btn-back:hover { color: var(--accent); transform: translateX(-3px); }
+  .header { background: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+  .brand { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; color: var(--core); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand img { height: 35px; border-radius: 6px; }
+  .btn-back { color: var(--core); font-weight: 600; text-decoration: none; font-size: 14px; transition: 0.2s; }
+  .btn-back:hover { color: var(--accent); }
 
-  /* CONTAINER & TITLE */
-  .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
-  .page-title { text-align: center; margin-bottom: 30px; }
-  .page-title h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.5rem; color: var(--core); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.5px; }
-  .page-title p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 25px; }
-
-  /* TOMBOL DAFTAR TRYOUT (BARU) */
-  .btn-daftar { display: inline-block; background: var(--core); color: #fff; font-weight: 700; font-size: 1rem; padding: 12px 30px; border-radius: 50px; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(11,60,42,.2); }
-  .btn-daftar:hover { background: var(--core-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(11,60,42,.3); }
+  .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+  .page-title { text-align: center; margin-bottom: 40px; }
+  .page-title h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; color: var(--core); margin-bottom: 10px; }
+  .page-title p { color: var(--text-secondary); font-size: 1.1rem; }
 
   /* GRID PAKET */
-  .grid-paket { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 40px; }
+  .grid-paket { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
   
-  /* KARTU PAKET */
-  .card { background: #fff; border: 2px solid var(--border); border-radius: 20px; padding: 25px 20px; text-align: center; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-  .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(11,60,42,.08); }
-  .card h3 { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--core); margin-bottom: 8px; font-size: 1.3rem; }
+  .card { background: #fff; border: 2px solid var(--border); border-radius: 16px; padding: 25px 20px; text-align: center; transition: 0.3s; display: flex; flex-direction: column; }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(11,60,42,.08); }
+  .card h3 { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--core); margin-bottom: 10px; font-size: 1.2rem; }
   
-  /* BADGE TANGGAL RILIS */
-  .release-date { font-size: 12px; color: var(--text-secondary); font-weight: 600; margin-bottom: 15px; background: #F5F9F7; padding: 4px 10px; border-radius: 20px; display: inline-block; border: 1px solid var(--border); }
-  
-  .status { font-size: 13px; font-weight: 700; margin-bottom: 20px; flex: 1; letter-spacing: 0.5px; }
+  .status { font-size: 12px; font-weight: 700; margin-bottom: 20px; flex: 1; }
   .status.locked { color: #EF4444; }
   .status.unlocked { color: #22C55E; }
   .status.na { color: #9CA3AF; }
 
-  /* BUTTONS */
-  .btn { width: 100%; padding: 14px; border: none; border-radius: 10px; font-weight: 700; font-family: 'Outfit', sans-serif; cursor: pointer; transition: 0.3s; font-size: 15px; }
-  .btn-masuk { background: var(--core); color: #fff; box-shadow: 0 4px 10px rgba(11,60,42,.2); }
-  .btn-masuk:hover { background: var(--core-dark); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(11,60,42,.3); }
-  .btn-kode { background: var(--accent); color: var(--core-dark); box-shadow: 0 4px 10px rgba(244,162,89,.2); }
-  .btn-kode:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(244,162,89,.3); }
+  .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer; transition: 0.2s; font-size: 14px; }
+  .btn-masuk { background: var(--core); color: #fff; }
+  .btn-masuk:hover { background: var(--core-dark); }
+  .btn-kode { background: var(--accent); color: var(--core-dark); }
+  .btn-kode:hover { background: #D68A3C; }
   .btn-na { background: #E5E7EB; color: #9CA3AF; cursor: not-allowed; }
 
   /* FORM INPUT KODE */
-  .form-kode { display: none; margin-top: 15px; text-align: left; background: #F8FAF9; padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
-  .form-kode input { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; font-family: inherit; font-size: 14px; transition: 0.2s; outline: none; }
-  .form-kode input:focus { border-color: var(--core); }
-  .form-kode button { width: 100%; padding: 12px; background: #22C55E; color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-bottom: 12px; font-family: 'Outfit', sans-serif; font-size: 14px; transition: 0.3s; }
-  .form-kode button:hover { background: #16A34A; }
-  .form-kode a { display: block; text-align: center; font-size: 13px; color: var(--core); font-weight: 700; text-decoration: none; }
-  .form-kode a:hover { color: var(--accent); text-decoration: underline; }
-
-  @media (max-width: 768px) {
-    .header { padding: 15px 20px; }
-    .brand { font-size: 18px; }
-    .brand img { height: 35px; }
-    .page-title h1 { font-size: 2rem; }
-    .grid-paket { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-    .card { padding: 20px 15px; }
-    .btn-daftar { width: 100%; }
-  }
+  .form-kode { display: none; margin-top: 15px; text-align: left; }
+  .form-kode input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; font-family: inherit; font-size: 13px; }
+  .form-kode button { width: 100%; padding: 10px; background: #22C55E; color: #fff; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-bottom: 8px; }
+  .form-kode a { display: block; text-align: center; font-size: 12px; color: var(--core); font-weight: 600; text-decoration: none; }
 </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <div class="header">
-    <!-- GANTI LINK DI BAWAH DENGAN LINK WEB BIMBEL LU -->
-    <a href="https://web-bimbel-lu.vercel.app" class="brand">
+    <a href="https://web-bimbel-lu.vercel.app" class="brand"> <!-- GANTI LINK WEB BIMBEL DI SINI -->
       <img src="https://i.imgur.com/fyKfXaZ.png" alt="Logo">
       BrainUp.Id
     </a>
@@ -98,8 +66,6 @@
     <div class="page-title">
       <h1>Pilih Paket TryOut</h1>
       <p>Masukkan kode akses untuk membuka ujian.</p>
-      <!-- TOMBOL DAFTAR KE WA ADMIN -->
-      <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20mendaftar%20TryOut%20SKD%20BrainUp" target="_blank" class="btn-daftar">📝 Daftar TryOut Sekarang</a>
     </div>
 
     <div class="grid-paket" id="paket-container">
@@ -115,43 +81,21 @@
     // =======================================================
     // PENGATURAN UTAMA (GANTI DI SINI BANG)
     // =======================================================
-    const WA_ADMIN = "6281234567890"; // Ganti pakai nomor WA lu
+    // 1. Nomor WhatsApp Admin (pakai kode negara 62, tanpa spasi/tanda +)
+    const WA_ADMIN = "6281234567890"; 
     
-    // Link TryOut (Kosongin "" kalau belum rilis)
-    // Cukup isi TO 1 aja karena lu baru punya 1 web tryout.
+    // 2. Link TryOut (Isi link file index.html TryOut lu yang asli)
+    // Kosongin "" kalau TryOut tersebut belum siap/dijual
     const LINK_TRYOUT = {
-      1: "https://mobilremots.vercel.app/", 
-      2: "", 3: "", 4: "", 5: "",
-      6: "", 7: "", 8: "", 9: "", 10: "",
-      11: "", 12: "", 13: "", 14: "", 15: "",
-      16: "", 17: "", 18: "", 19: "", 20: ""
+      1: "https://mobilremots.vercel.app/", // Contoh link TryOut 1
+      2: "", 
+      3: "", 
+      4: "",
+      5: ""
+      // Lanjut sampai 20...
     };
 
-    // TANGGAL RILIS (Diisi manual biar rapi)
-    const TANGGAL_RILIS = {
-      1: "Tersedia",
-      2: "Rilis: 20 Okt 2026",
-      3: "Rilis: 27 Okt 2026",
-      4: "Rilis: 3 Nov 2026",
-      5: "Rilis: 10 Nov 2026",
-      6: "Rilis: 15 Des 2026", // Mulai Desember
-      7: "Rilis: 22 Des 2026",
-      8: "Rilis: 29 Des 2026",
-      9: "Rilis: 5 Jan 2027",
-      10: "Rilis: 12 Jan 2027",
-      11: "Rilis: 19 Jan 2027",
-      12: "Rilis: 26 Jan 2027",
-      13: "Rilis: 2 Feb 2027",
-      14: "Rilis: 9 Feb 2027",
-      15: "Rilis: 16 Feb 2027",
-      16: "Rilis: 23 Feb 2027",
-      17: "Rilis: 2 Mar 2027",
-      18: "Rilis: 9 Mar 2027",
-      19: "Rilis: 16 Mar 2027",
-      20: "Rilis: 23 Mar 2027"
-    };
-
-    // Daftar Kode Voucher
+    // 3. Daftar Kode Voucher (Ganti dengan kode dari Excel lu)
     const kodeVoucher = {
       "tryout1": ["SKD1-A1B2", "SKD1-C3D4"], 
       "tryout2": ["SKD2-X1Y2"],
@@ -174,23 +118,14 @@
         const paketKey = `tryout${no}`;
         const isLinkTersedia = LINK_TRYOUT[no] && LINK_TRYOUT[no] !== "";
         const isUnlocked = kodeTersimpan[paketKey] !== undefined;
-        const tglRilis = TANGGAL_RILIS[no] || "";
         
         const card = document.createElement('div');
         card.className = 'card';
         
-        // Tentukan Status & Warna Border
+        // Tentukan Status
         let statusHtml = '';
-        let dateHtml = '';
-        
-        // Logika nampilin tanggal
-        if (tglRilis) {
-          dateHtml = `<div class="release-date">📅 ${tglRilis}</div>`;
-        }
-
         if (!isLinkTersedia) {
           card.style.borderColor = '#E5E7EB';
-          card.style.background = '#FAFAFA'; 
           statusHtml = '<div class="status na">🔒 BELUM TERSEDIA</div>';
         } else if (isUnlocked) {
           card.style.borderColor = '#22C55E';
@@ -212,7 +147,6 @@
 
         card.innerHTML = `
           <h3>TryOut ${no}</h3>
-          ${dateHtml}
           ${statusHtml}
           ${btnHtml}
           <div class="form-kode" id="form-${no}">
@@ -261,7 +195,7 @@
     window.bukaUjian = (no) => {
       const link = LINK_TRYOUT[no];
       if (link) {
-        window.location.href = link;
+        window.location.href = link; // Pindah halaman
       }
     };
 
