@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilih Paket TryOut - BrainUp.Id</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --core:#0b3c2a; --core-dark:#072a1d; --accent:#F4A259; --bg-main:#F5F9F7;
+    --text-primary:#1C2B2B; --text-secondary:#5A6B6B; --border:#D6E4DD;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-primary); line-height: 1.6; padding-bottom: 50px; }
+  
+  .header { background: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+  .brand { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; color: var(--core); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand img { height: 35px; border-radius: 6px; }
+  .btn-back { color: var(--core); font-weight: 600; text-decoration: none; font-size: 14px; transition: 0.2s; }
+  .btn-back:hover { color: var(--accent); }
+
+  .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+  .page-title { text-align: center; margin-bottom: 40px; }
+  .page-title h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; color: var(--core); margin-bottom: 10px; }
+  .page-title p { color: var(--text-secondary); font-size: 1.1rem; }
+
+  /* GRID PAKET */
+  .grid-paket { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+  
+  .card { background: #fff; border: 2px solid var(--border); border-radius: 16px; padding: 25px 20px; text-align: center; transition: 0.3s; display: flex; flex-direction: column; }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(11,60,42,.08); }
+  .card h3 { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--core); margin-bottom: 10px; font-size: 1.2rem; }
+  
+  .status { font-size: 12px; font-weight: 700; margin-bottom: 20px; flex: 1; }
+  .status.locked { color: #EF4444; }
+  .status.unlocked { color: #22C55E; }
+  .status.na { color: #9CA3AF; }
+
+  .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer; transition: 0.2s; font-size: 14px; }
+  .btn-masuk { background: var(--core); color: #fff; }
+  .btn-masuk:hover { background: var(--core-dark); }
+  .btn-kode { background: var(--accent); color: var(--core-dark); }
+  .btn-kode:hover { background: #D68A3C; }
+  .btn-na { background: #E5E7EB; color: #9CA3AF; cursor: not-allowed; }
+
+  /* FORM INPUT KODE */
+  .form-kode { display: none; margin-top: 15px; text-align: left; }
+  .form-kode input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; font-family: inherit; font-size: 13px; }
+  .form-kode button { width: 100%; padding: 10px; background: #22C55E; color: #fff; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-bottom: 8px; }
+  .form-kode a { display: block; text-align: center; font-size: 12px; color: var(--core); font-weight: 600; text-decoration: none; }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <a href="https://web-bimbel-lu.vercel.app" class="brand"> <!-- GANTI LINK WEB BIMBEL DI SINI -->
+      <img src="https://i.imgur.com/fyKfXaZ.png" alt="Logo">
+      BrainUp.Id
+    </a>
+    <a href="https://web-bimbel-lu.vercel.app" class="btn-back">← Kembali ke Bimbel</a>
+  </div>
+
+  <!-- KONTEN -->
+  <div class="container">
+    <div class="page-title">
+      <h1>Pilih Paket TryOut</h1>
+      <p>Masukkan kode akses untuk membuka ujian.</p>
+    </div>
+
+    <div class="grid-paket" id="paket-container">
+      <!-- Kotak paket akan di-generate oleh JS di bawah -->
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIKA -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const paketContainer = document.getElementById('paket-container');
+    
+    // =======================================================
+    // PENGATURAN UTAMA (GANTI DI SINI BANG)
+    // =======================================================
+    // 1. Nomor WhatsApp Admin (pakai kode negara 62, tanpa spasi/tanda +)
+    const WA_ADMIN = "6281234567890"; 
+    
+    // 2. Link TryOut (Isi link file index.html TryOut lu yang asli)
+    // Kosongin "" kalau TryOut tersebut belum siap/dijual
+    const LINK_TRYOUT = {
+      1: "https://mobilremots.vercel.app/", // Contoh link TryOut 1
+      2: "", 
+      3: "", 
+      4: "",
+      5: ""
+      // Lanjut sampai 20...
+    };
+
+    // 3. Daftar Kode Voucher (Ganti dengan kode dari Excel lu)
+    const kodeVoucher = {
+      "tryout1": ["SKD1-A1B2", "SKD1-C3D4"], 
+      "tryout2": ["SKD2-X1Y2"],
+      "tryout3": []
+      // Lanjut sampai 20...
+    };
+    // =======================================================
+
+    // Ambil data dari LocalStorage
+    let kodeTersimpan = JSON.parse(localStorage.getItem('kodeAksesTO') || '{}');
+    let kodeTerpakai = JSON.parse(localStorage.getItem('kodeTerpakaiGlobal') || '[]');
+    
+    // Bikin Array 1-20
+    const daftarPaket = Array.from({length: 20}, (_, i) => i + 1);
+
+    function renderPaket() {
+      paketContainer.innerHTML = '';
+      
+      daftarPaket.forEach((no) => {
+        const paketKey = `tryout${no}`;
+        const isLinkTersedia = LINK_TRYOUT[no] && LINK_TRYOUT[no] !== "";
+        const isUnlocked = kodeTersimpan[paketKey] !== undefined;
+        
+        const card = document.createElement('div');
+        card.className = 'card';
+        
+        // Tentukan Status
+        let statusHtml = '';
+        if (!isLinkTersedia) {
+          card.style.borderColor = '#E5E7EB';
+          statusHtml = '<div class="status na">🔒 BELUM TERSEDIA</div>';
+        } else if (isUnlocked) {
+          card.style.borderColor = '#22C55E';
+          statusHtml = '<div class="status unlocked">🔓 TERBUKA</div>';
+        } else {
+          card.style.borderColor = 'var(--accent)';
+          statusHtml = '<div class="status locked">🔒 TERKUNCI</div>';
+        }
+
+        // Tentukan Tombol
+        let btnHtml = '';
+        if (!isLinkTersedia) {
+          btnHtml = `<button class="btn btn-na" disabled>Belum Tersedia</button>`;
+        } else if (isUnlocked) {
+          btnHtml = `<button class="btn btn-masuk" onclick="bukaUjian(${no})">Mulai Ujian</button>`;
+        } else {
+          btnHtml = `<button class="btn btn-kode" onclick="toggleForm(${no})">Masukkan Kode</button>`;
+        }
+
+        card.innerHTML = `
+          <h3>TryOut ${no}</h3>
+          ${statusHtml}
+          ${btnHtml}
+          <div class="form-kode" id="form-${no}">
+            <input type="text" id="input-${no}" placeholder="Masukkan Kode">
+            <button onclick="verifikasiKode(${no})">Buka Kunci</button>
+            <a href="https://wa.me/${WA_ADMIN}?text=Halo%20Admin,%20saya%20ingin%20membeli%20kode%20TryOut%20${no}" target="_blank">Belum ada kode? Hubungi Admin</a>
+          </div>
+        `;
+        
+        paketContainer.appendChild(card);
+      });
+    }
+
+    // Fungsi buka form input kode
+    window.toggleForm = (no) => {
+      const form = document.getElementById(`form-${no}`);
+      form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+    };
+
+    // Fungsi verifikasi kode
+    window.verifikasiKode = (no) => {
+      const paketKey = `tryout${no}`;
+      const input = document.getElementById(`input-${no}`).value.trim().toUpperCase();
+      const kodeValid = kodeVoucher[paketKey] || [];
+      
+      if (kodeValid.includes(input)) {
+        if (kodeTerpakai.includes(input)) {
+          alert('❌ Kode ini sudah digunakan di perangkat lain!');
+          return;
+        }
+        
+        kodeTersimpan[paketKey] = input;
+        localStorage.setItem('kodeAksesTO', JSON.stringify(kodeTersimpan));
+        
+        kodeTerpakai.push(input);
+        localStorage.setItem('kodeTerpakaiGlobal', JSON.stringify(kodeTerpakai));
+        
+        alert('✅ Kode Benar! Silakan klik "Mulai Ujian".');
+        renderPaket();
+      } else {
+        alert('❌ Kode Salah / Tidak Valid. Silakan hubungi Admin.');
+      }
+    };
+
+    // Fungsi pindah ke web ujian
+    window.bukaUjian = (no) => {
+      const link = LINK_TRYOUT[no];
+      if (link) {
+        window.location.href = link; // Pindah halaman
+      }
+    };
+
+    // Panggil fungsi render
+    renderPaket();
+  });
+  </script>
+
+</body>
+</html>
